@@ -7,7 +7,12 @@ class BagOfWords {
     final private HashMap<String, Long> hashMap = new HashMap<>();
 
     public BagOfWords(String document) {
-        String [] words = document.toLowerCase().split(" ");
+            String [] words = document
+                                    .toLowerCase()
+                                    .replace(".","")
+                                    .replace(",","")
+                                    .split(" ");
+
         for (String key : words){
             if(hashMap.containsKey(key)){
                 hashMap.put(key, hashMap.get(key)+1L);
