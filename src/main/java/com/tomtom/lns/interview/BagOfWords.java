@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 class BagOfWords {
 
-    final private HashMap hashMap = new HashMap<String, Long>();
+    final private HashMap<String, Long> hashMap = new HashMap<>();
 
     public BagOfWords(String document) {
         String [] words = document.split(" ");
@@ -12,10 +12,9 @@ class BagOfWords {
             String key = word.toLowerCase();
 
             if(hashMap.containsKey(key)){
-                int value = 1 + (int) hashMap.get(key);
-                hashMap.put(key, value);
-            }else{
-                hashMap.put(key, 1);
+                hashMap.put(key, hashMap.get(key)+1);
+            } else{
+                hashMap.put(key, 1L);
             }
         }
     }
@@ -25,7 +24,9 @@ class BagOfWords {
     }
 
     long tokenFrequency(String token) {
-        String key = token.toLowerCase();
-        return Long.parseLong(hashMap.get(key).toString());
+        if (token != null){
+            return hashMap.get(token.toLowerCase());
+        }
+       return 0;
     }
 }
